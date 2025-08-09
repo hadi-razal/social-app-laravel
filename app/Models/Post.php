@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use MongoDB\Database\MongoDB\Model;
+
+class Post extends Model
+{
+
+    protected $connection = 'mongodb';
+
+    protected $table = 'posts';
+
+
+    protected $fillable = [
+        'image_path',
+        'caption',
+        'image_url',
+        'user_id'
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes(){
+        return $this->hasMany(Like::class);
+    }
+
+    
+}
