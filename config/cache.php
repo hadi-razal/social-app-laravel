@@ -90,6 +90,16 @@ return [
             'driver' => 'octane',
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'connection' => 'mongodb',
+            'collection' => 'cache',
+            'lock_timeout' =>  86400,
+            'lock_lottery' => [2, 100],
+            'lock_connection' => env('DB_CACHE_LOCK_CONNECTION', 'mongodb'),
+            'lock_collection' => env('DB_CACHE_LOCK_COLLECTION', 'cache_locks'),
+        ],
+
     ],
 
     /*

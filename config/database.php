@@ -31,6 +31,12 @@ return [
 
     'connections' => [
 
+         'mongodb' => [
+            'driver' => 'mongodb',
+            'url' => env('DB_URL'),
+            'database' => env('DB_DATABASE', database_path('social_app')),
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),
