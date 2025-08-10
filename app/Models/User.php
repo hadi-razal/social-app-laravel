@@ -15,7 +15,7 @@ class User extends Authenticatable
     protected $connection = 'mongodb';
 
     protected $table = 'users';
-   
+
     protected $fillable = [
         'name',
         'email',
@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-public function posts()
+    public function posts()
     {
         return $this->hasMany(Post::class);
     }
@@ -61,6 +61,4 @@ public function posts()
     {
         return $this->hasMany(Like::class);
     }
-
-
 }

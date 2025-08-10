@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use MongoDB\Database\MongoDB\Model;
+use MongoDB\Laravel\Eloquent\Model;
+
 
 class Post extends Model
 {
