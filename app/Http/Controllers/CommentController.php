@@ -2,63 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    public function __construct(){
+        $this->middleware('auth');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function store(Request $request,Post $post){
+        $data = $request->validate([
+            'comment' => 'required|string|max:500',
+        ]);
+
+        $post->comments()->create([ 
+            'comment' => $data['comment'],
+            'user_id' => auth()->id(),
+        ]);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function destroy(Comment $comment){
+
+        if(auth()->user()->id != $comment->user_id){
+            abort(403, 'Unauthorized action.');
+        }
+
+        $postId = $comment->post_id;
+        $comment->delete();
+
+
+        return redirect('/posts/' . $postId);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
