@@ -7,12 +7,11 @@ use MongoDB\Laravel\Eloquent\Model;
 class Like extends Model
 {
     protected $connection = 'mongodb';
-
     protected $table = 'likes';
 
     protected $fillable = [
         'user_id',
-        'post_id'
+        'post_id',
     ];
 
     public function user()
@@ -20,8 +19,8 @@ class Like extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function post(){
+    public function post()
+    {
         return $this->belongsTo(Post::class);
     }
-    
 }

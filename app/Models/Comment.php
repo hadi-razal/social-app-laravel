@@ -6,15 +6,13 @@ use MongoDB\Laravel\Eloquent\Model;
 
 class Comment extends Model
 {
-    
     protected $connection = 'mongodb';
-
     protected $table = 'comments';
 
     protected $fillable = [
         'comment',
         'user_id',
-        'post_id'
+        'post_id',
     ];
 
     public function user()
@@ -26,6 +24,4 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
-
-
-}
+} 

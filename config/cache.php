@@ -91,13 +91,13 @@ return [
         ],
 
         'mongodb' => [
-            'driver' => 'mongodb',
-            'connection' => 'mongodb',
-            'collection' => 'cache',
-            'lock_timeout' =>  86400,
-            'lock_lottery' => [2, 100],
-            'lock_connection' => env('DB_CACHE_LOCK_CONNECTION', 'mongodb'),
-            'lock_collection' => env('DB_CACHE_LOCK_COLLECTION', 'cache_locks'),
+          'driver' => 'mongodb',
+          'connection' => 'mongodb',
+          'collection' => 'cache',
+          'lock_connection' => 'mongodb',
+          'lock_collection' => 'cache_locks',
+          'lock_lottery' => [2, 100],
+          'lock_timeout' => 86400,
         ],
 
     ],
@@ -113,6 +113,6 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
 
 ];

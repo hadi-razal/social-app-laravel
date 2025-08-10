@@ -1,16 +1,13 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class LikeController extends controller
+class LikeController extends Controller
 {
-
-
-    public function _contruct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -24,13 +21,10 @@ class LikeController extends controller
         return back();
     }
 
-
     public function destroy(Post $post)
     {
         $post->likes()->where('user_id', auth()->id())->delete();
 
         return back();
     }
-
-
 }
